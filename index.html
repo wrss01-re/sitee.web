@@ -1,401 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Daniel Web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Web — Создание сайтов</title>
 
-  <style>
-    html{ scroll-behavior:smooth; }
+<style>
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(99,102,241,0.25), transparent),
+    radial-gradient(900px 600px at 80% 30%, rgba(34,197,94,0.18), transparent),
+    #050814;
+  color:white;
+}
+.navbar{
+  position:fixed;top:0;width:100%;
+  backdrop-filter:blur(10px);
+  background:rgba(5,8,20,0.6);
+  border-bottom:1px solid rgba(148,163,184,0.15);
+  padding:14px 0;text-align:center;z-index:1000;
+}
+.navbar a{
+  color:#94a3b8;text-decoration:none;margin:0 12px;font-size:14px;transition:.25s;
+}
+.navbar a:hover{color:white}
 
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(99,102,241,0.25), transparent),
-        radial-gradient(900px 600px at 80% 30%, rgba(34,197,94,0.18), transparent),
-        #050814;
-      color:white;
-    }
+.container{max-width:1000px;margin:0 auto;padding:0 20px}
+.section{padding:90px 0}
+h1{font-size:52px;margin:0 0 10px;text-shadow:0 0 22px rgba(99,102,241,.25)}
+h2{text-align:center;margin-bottom:10px}
+.desc{text-align:center;color:#94a3b8;max-width:700px;margin:0 auto 30px;line-height:1.6}
+.grid{display:flex;gap:16px}
+.card{
+  flex:1;padding:22px;border-radius:18px;
+  background:rgba(30,41,59,.55);
+  border:1px solid rgba(148,163,184,.14);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+  transition:.25s
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(99,102,241,.35)}
 
-    /* NAV */
-    .navbar{
-      position:fixed;
-      top:0; width:100%;
-      backdrop-filter: blur(10px);
-      background: rgba(5,8,20,0.6);
-      border-bottom: 1px solid rgba(148,163,184,0.15);
-      padding:14px 0;
-      text-align:center;
-      z-index:1000;
-    }
-    .navbar a{
-      color:#94a3b8;
-      text-decoration:none;
-      margin:0 12px;
-      font-size:14px;
-      transition:0.25s;
-    }
-    .navbar a:hover{ color:white; }
+.hero{padding:150px 0 90px;text-align:center}
+.badge{
+  display:inline-block;padding:8px 12px;border-radius:999px;
+  background:rgba(99,102,241,.15);
+  border:1px solid rgba(99,102,241,.25);
+  color:#c7d2fe;font-size:13px;margin-bottom:16px
+}
+.sub{color:#94a3b8;font-size:18px;max-width:680px;margin:0 auto}
+.btn{
+  margin-top:22px;padding:15px 28px;font-size:18px;
+  border:none;border-radius:14px;cursor:pointer;color:white;
+  background:linear-gradient(90deg,#22c55e,#6366f1);
+  box-shadow:0 0 30px rgba(99,102,241,.25);
+  transition:.25s
+}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
 
-    /* LAYOUT */
-    .container{
-      max-width:1000px;
-      margin:0 auto;
-      padding:0 20px;
-    }
-
-    /* HERO */
-    .hero{
-      padding:130px 0 90px;
-      text-align:center;
-    }
-
-    .badge{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(99,102,241,0.15);
-      border:1px solid rgba(99,102,241,0.25);
-      color:#c7d2fe;
-      font-size:13px;
-      margin-bottom:16px;
-    }
-
-    h1{
-      font-size:52px;
-      margin:0 0 10px;
-      text-shadow: 0 0 22px rgba(99,102,241,0.25);
-    }
-
-    .sub{
-      color:#94a3b8;
-      font-size:18px;
-      line-height:1.5;
-      margin:0 auto;
-      max-width:680px;
-    }
-
-    .btn{
-      margin-top:22px;
-      padding:15px 28px;
-      font-size:18px;
-      border:none;
-      border-radius:14px;
-      cursor:pointer;
-      color:white;
-      background: linear-gradient(90deg, #22c55e, #6366f1);
-      box-shadow: 0 0 30px rgba(99,102,241,0.25);
-      transition:0.25s;
-    }
-
-    .btn:hover{
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 0 45px rgba(34,197,94,0.22), 0 0 55px rgba(99,102,241,0.22);
-    }
-
-    .mini{
-      margin-top:14px;
-      color:#64748b;
-      font-size:13px;
-    }
-
-    /* SECTIONS */
-    .section{
-      padding:80px 0;
-    }
-
-    .section h2{
-      text-align:center;
-      margin:0 0 10px;
-      font-size:30px;
-    }
-
-    .section .desc{
-      text-align:center;
-      color:#94a3b8;
-      margin:0 auto 26px;
-      max-width:700px;
-      line-height:1.6;
-    }
-
-    /* CARDS GRID */
-    .grid{
-      display:flex;
-      gap:16px;
-    }
-
-    .card{
-      flex:1;
-      border-radius:18px;
-      padding:22px;
-      background: rgba(30,41,59,0.55);
-      border: 1px solid rgba(148,163,184,0.14);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-      transition:0.25s;
-    }
-
-    .card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(99,102,241,0.35);
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:20px;
-    }
-
-    .card p{
-      margin:0;
-      color:#94a3b8;
-      line-height:1.6;
-    }
-
-    .pill{
-      margin-top:14px;
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(34,197,94,0.14);
-      border: 1px solid rgba(34,197,94,0.22);
-      color:#86efac;
-      font-size:13px;
-    }
-
-    /* PORTFOLIO */
-    .project{
-      overflow:hidden;
-      padding:0;
-    }
-
-    .project img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      display:block;
-      filter:saturate(1.1);
-    }
-
-    .project .content{
-      padding:18px 22px 22px;
-    }
-
-    .tag{
-      display:inline-block;
-      font-size:12px;
-      color:#93c5fd;
-      background:rgba(59,130,246,0.15);
-      border:1px solid rgba(59,130,246,0.22);
-      padding:6px 10px;
-      border-radius:999px;
-      margin-bottom:10px;
-    }
-
-    /* REVIEWS */
-    .quote{
-      color:#e2e8f0 !important;
-    }
-
-    .who{
-      margin-top:12px;
-      font-weight:700;
-      font-size:14px;
-      color:#cbd5e1;
-    }
-
-    .role{
-      font-size:13px;
-      color:#64748b;
-    }
-
-    /* CONTACT */
-    .contactBox{
-      text-align:center;
-    }
-
-    .contactRow{
-      display:flex;
-      gap:16px;
-      margin-top:22px;
-    }
-
-    .contactItem{
-      flex:1;
-      border-radius:18px;
-      padding:18px;
-      background: rgba(17,24,39,0.55);
-      border: 1px solid rgba(148,163,184,0.14);
-      color:#94a3b8;
-      line-height:1.6;
-    }
-
-    .footer{
-      padding:40px 16px;
-      text-align:center;
-      color:#64748b;
-      border-top:1px solid rgba(148,163,184,0.12);
-    }
-
-    /* MOBILE */
-    @media(max-width:700px){
-      .container{ padding:0 16px; }
-      .grid{ flex-direction:column; }
-      .contactRow{ flex-direction:column; }
-      h1{ font-size:34px; line-height:1.2; }
-      .sub{ font-size:16px; }
-      .btn{ width:100%; max-width:340px; font-size:16px; }
-      .navbar a{ display:inline-block; margin:6px 8px; }
-      .hero{ padding:140px 0 80px; }
-      .project img{ height:160px; }
-    }
-  </style>
+input,select,textarea{
+  width:100%;padding:14px;border-radius:14px;
+  border:1px solid rgba(148,163,184,.18);
+  background:rgba(2,6,23,.35);color:white;margin-bottom:10px
+}
+.footer{
+  padding:40px 16px;text-align:center;
+  color:#64748b;border-top:1px solid rgba(148,163,184,.12)
+}
+@media(max-width:700px){
+  .grid{flex-direction:column}
+  h1{font-size:34px}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="navbar">
-    <a href="#home">Главная</a>
-    <a href="#services">Услуги</a>
-    <a href="#portfolio">Портфолио</a>
-    <a href="#reviews">Отзывы</a>
-    <a href="#contacts">Контакты</a>
-  </div>
+<div class="navbar">
+<a href="#home">Главная</a>
+<a href="#services">Услуги</a>
+<a href="#about">Обо мне</a>
+<a href="#order">Заявка</a>
+</div>
 
-  <!-- HERO -->
-  <div id="home" class="hero">
-    <div class="container">
-      <div class="badge">⚡️ Быстро • Красиво • Адаптивно</div>
-      <h1>Создание сайтов под ключ</h1>
-      <p class="sub">Делаю современные лендинги и сайты для бизнеса. Подключу WhatsApp, помогу с текстом и оформлением.</p>
+<!-- HERO -->
+<div id="home" class="hero">
+<div class="container">
+<div class="badge">⚡ Быстро • Красиво • Адаптивно</div>
+<h1>Создание сайтов под ключ</h1>
+<p class="sub">Делаю современные лендинги и сайты для бизнеса. Подключу WhatsApp и помогу с текстом.</p>
+<a href="https://wa.me/77777777777" target="_blank">
+<button class="btn">Написать в WhatsApp</button>
+</a>
+</div>
+</div>
 
-      <a href="https://wa.me/77777777777" target="_blank" style="text-decoration:none;">
-        <button class="btn">Написать в WhatsApp</button>
-      </a>
+<!-- SERVICES -->
+<div id="services" class="section">
+<div class="container">
+<h2>Услуги</h2>
+<p class="desc">Выбирай формат — подберём под твою задачу.</p>
+<div class="grid">
+<div class="card"><h3>Сайт-визитка</h3><p>1–3 блока, контакты, кнопка WhatsApp.</p></div>
+<div class="card"><h3>Лендинг</h3><p>Продающая страница с преимуществами и заявкой.</p></div>
+<div class="card"><h3>Интернет-магазин</h3><p>Каталог товаров и оформление заказа.</p></div>
+</div>
+</div>
+</div>
 
-      <div class="mini">Ответ в течение 10–30 минут</div>
-    </div>
-  </div>
+<!-- ABOUT -->
+<div id="about" class="section">
+<div class="container">
+<h2>Обо мне</h2>
+<p class="desc">Работаю быстро, аккуратно и довожу до результата.</p>
+<div class="grid">
+<div class="card"><h3>Почему я</h3><p>• Быстрая связь<br>• Адаптив под телефон<br>• Помощь с текстом</p></div>
+<div class="card"><h3>Как работаем</h3><p>1) Обсуждение<br>2) Разработка<br>3) Правки<br>4) Публикация</p></div>
+<div class="card"><h3>Гарантии</h3><p>• 2 круга правок<br>• Фиксированная цена<br>• Помощь с размещением</p></div>
+</div>
+</div>
+</div>
 
-  <!-- SERVICES -->
-  <div id="services" class="section">
-    <div class="container">
-      <h2>Услуги</h2>
-      <p class="desc">Выбирай формат — подберём под твою задачу и бюджет.</p>
+<!-- ORDER -->
+<div id="order" class="section">
+<div class="container">
+<h2>Оставить заявку</h2>
+<p class="desc">Заполни форму — откроется WhatsApp с готовым текстом.</p>
+<div class="card" style="max-width:720px;margin:0 auto">
+<input id="n" placeholder="Имя">
+<input id="p" placeholder="Телефон">
+<select id="t">
+<option>Сайт-визитка</option>
+<option>Лендинг</option>
+<option>Интернет-магазин</option>
+</select>
+<textarea id="d" placeholder="Описание задачи"></textarea>
+<button class="btn" onclick="sendWA()">Отправить</button>
+</div>
+</div>
+</div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Сайт-визитка</h3>
-          <p>1–3 блока, контакты, кнопка WhatsApp, адаптация под телефон.</p>
-          <span class="pill">от 50 000 тг</span>
-        </div>
+<div class="footer">© 2026 Daniel Web</div>
 
-        <div class="card">
-          <h3>Лендинг</h3>
-          <p>Продающая страница: преимущества, портфолио, отзывы, заявка.</p>
-          <span class="pill">от 90 000 тг</span>
-        </div>
+<a href="https://wa.me/77777777777" target="_blank"
+style="position:fixed;right:18px;bottom:18px;z-index:9999;text-decoration:none">
+<div style="
+width:56px;height:56px;border-radius:999px;
+display:flex;align-items:center;justify-content:center;
+background:linear-gradient(90deg,#22c55e,#6366f1);
+font-size:26px;color:white;">💬</div>
+</a>
 
-        <div class="card">
-          <h3>Интернет-магазин</h3>
-          <p>Каталог товаров, карточки, оформление заказа, админка (по желанию).</p>
-          <span class="pill">от 200 000 тг</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<script>
+function sendWA(){
+const phone="77777777777";
+const name=document.getElementById("n").value;
+const tel=document.getElementById("p").value;
+const type=document.getElementById("t").value;
+const desc=document.getElementById("d").value;
 
-  <!-- PORTFOLIO -->
-  <div id="portfolio" class="section">
-    <div class="container">
-      <h2>Портфолио</h2>
-      <p class="desc">Примеры того, как будет выглядеть твой сайт.</p>
+const text=`Привет! Хочу сайт.
+Тип: ${type}
+Имя: ${name}
+Телефон: ${tel}
+Описание: ${desc}`;
 
-      <div class="grid">
-        <div class="card project">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Проект 1">
-          <div class="content">
-            <span class="tag">Лендинг</span>
-            <h3>Сайт для мастера</h3>
-            <p>Главный экран, услуги, кнопка WhatsApp, адаптив.</p>
-          </div>
-        </div>
-
-        <div class="card project">
-          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" alt="Проект 2">
-          <div class="content">
-            <span class="tag">Визитка</span>
-            <h3>Сайт для сервиса</h3>
-            <p>Преимущества, контакты, быстрый заказ.</p>
-          </div>
-        </div>
-
-        <div class="card project">
-          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a" alt="Проект 3">
-          <div class="content">
-            <span class="tag">Магазин</span>
-            <h3>Мини-магазин</h3>
-            <p>Каталог, карточки товаров, оформление заявки.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- REVIEWS -->
-  <div id="reviews" class="section">
-    <div class="container">
-      <h2>Отзывы</h2>
-      <p class="desc">Чтобы выглядело живо — отзывы всегда повышают доверие.</p>
-
-      <div class="grid">
-        <div class="card">
-          <p class="quote">“Сделал сайт быстро и красиво, на телефоне всё идеально. Клиенты начали писать в тот же день.”</p>
-          <div class="who">Айбек</div>
-          <div class="role">Мастер по ремонту</div>
-        </div>
-
-        <div class="card">
-          <p class="quote">“Очень понравился дизайн и скорость. Всё объяснил и помог с текстом, рекомендую.”</p>
-          <div class="who">Диана</div>
-          <div class="role">Салон красоты</div>
-        </div>
-
-        <div class="card">
-          <p class="quote">“Нужен был лендинг под рекламу — сделал отлично, кнопки, блоки, всё работает.”</p>
-          <div class="who">Руслан</div>
-          <div class="role">Маркетолог</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTACTS -->
-  <div id="contacts" class="section">
-    <div class="container contactBox">
-      <h2>Контакты</h2>
-      <p class="desc">Хочешь такой сайт под себя? Напиши — обсудим.</p>
-
-      <a href="https://wa.me/77777777777" target="_blank" style="text-decoration:none;">
-        <button class="btn">Заказать сайт</button>
-      </a>
-
-      <div class="contactRow">
-        <div class="contactItem">
-          <b style="color:#e2e8f0;">Сроки:</b><br>
-          Визитка 1–2 дня • Лендинг 2–4 дня
-        </div>
-        <div class="contactItem">
-          <b style="color:#e2e8f0;">Что нужно от клиента:</b><br>
-          Текст/услуги/цены + фото (если нет — подберём)
-        </div>
-        <div class="contactItem">
-          <b style="color:#e2e8f0;">Город:</b><br>
-          Можно работать онлайн по всему Казахстану
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">© 2026 Daniel Web</div>
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`,"_blank");
+}
+</script>
 
 </body>
 </html>
+
+
